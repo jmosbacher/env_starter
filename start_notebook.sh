@@ -4,7 +4,7 @@ IMAGE_NAME=$1
 JUPYTER_TYPE=$2
 NOTEBOOK_DIR=$3
 
-GPU_TAG="-gpu" 
+GPU_TAG="gpu" 
 IMAGE_DIR='/project2/lgrandi/xenonnt/singularity-images'
 
 # if we passed the full path to an image, use that
