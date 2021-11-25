@@ -4,6 +4,7 @@ IMAGE_NAME=$1
 JUPYTER_TYPE=$2
 NOTEBOOK_DIR=$3
 
+GPU_TAG="-gpu" 
 IMAGE_DIR='/project2/lgrandi/xenonnt/singularity-images'
 
 # if we passed the full path to an image, use that
@@ -55,4 +56,8 @@ EOF
 chmod +x $INNER
 
 module load singularity
+if [[ "${CONTAINER}" == *"$GPU_TAG"* ]]; then
+  singularity exec --bind /project2 --bind /scratch/midway2/$USER --bind /dali --nv $CONTAINER $DIR/$INNER
+else
 singularity exec --bind /project2 --bind /scratch/midway2/$USER --bind /dali $CONTAINER $DIR/$INNER
+fi
